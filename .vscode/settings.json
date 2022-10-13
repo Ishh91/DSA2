@@ -2,6 +2,7 @@
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
         "*.html": "django-html",
-        "random": "c"
+        "random": "c",
+        "stdio.h": "c"
     }
 }
