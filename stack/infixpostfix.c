@@ -51,56 +51,76 @@ void Display()
     printf("\n");
 }
 
-int pre(char x){
-    if(x == '+' || x == '-'){
+int pre(char x)
+{
+    if (x == '+' || x == '-')
+    {
         return 1;
     }
     else if (x == '*' || x == '/')
     {
-        return 2;
+        return 3;
         /* code */
     }
-    return 0;
-    
-}
-int isoperand(char x){
-    if(x == '+' || x == '-' || x == '*' || x == '/'){
+    else if (x == '^')
+    {
+        return 6;
+    }
+    else if (x == '(')
+    {
+        return 7;
+    }
+    else if (x == ')')
+    {
         return 0;
     }
-    else{
+    return -1;
+}
+int isoperand(char x)
+{
+    if (x == '+' || x == '-' || x == '*' || x == '/' ||
+        x == '^' || x == '(' || x == ')')
+    {
+        return 0;
+    }
+    else
+    {
         return 1;
     }
 }
 
-char *Convert(char *infix){
+char *Convert(char *infix)
+{
     char *postfix;
     int i = 0, j = 0;
     int len = strlen(infix);
-    postfix = (char *)malloc((len+1)*sizeof(char));
+    postfix = (char *)malloc((len + 1) * sizeof(char));
     while (infix[i] != '\0')
     {
-        if(isoperand(infix[i])){
+        if (isoperand(infix[i]))
+        {
             postfix[j++] = infix[i++];
         }
-        else{
-            if(pre(infix[i])>pre(top->data)){
+        else
+        {
+            if (pre(infix[i]) > pre(top->data))
+            {
                 push(infix[i++]);
             }
-            else{
+            else
+            {
                 postfix[j++] = pop();
             }
         }
         /* code */
     }
-    while(top != NULL){
+    while (top != NULL)
+    {
         postfix[j++] = pop();
     }
     postfix[j] = '\0';
     return postfix;
-    
 }
-
-
 
 int main()
 {
