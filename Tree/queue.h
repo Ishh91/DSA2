@@ -30,6 +30,7 @@ void enqueue(struct Queue *q, struct Node *x)
 }
 struct Node *dequeue(struct Queue *q)
 {
+    //
     struct Node *x = NULL;
 
     if (q->front == q->rear)
